@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "global_villager_discounts",
+  "version": "${version}",
+  "name": "Global Villager Discounts",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/global_villager_discounts/icon.png",
+  "accessWidener" : "global_villager_discounts.accesswidener",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.p5vanilla.global_villager_discounts.GlobalVillagerDiscounts"
+    ]
+  },
+  "mixins": [
+    "global_villager_discounts.mixins.json",
+    {
+      "config": "global_villager_discounts.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
