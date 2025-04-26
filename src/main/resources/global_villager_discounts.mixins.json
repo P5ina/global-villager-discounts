@@ -4,7 +4,7 @@
   "package": "com.p5vanilla.global_villager_discounts.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "VillagerGossipsMixin"
+    "com.p5ina.global_villager_discounts.mixin.VillagerGossipsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

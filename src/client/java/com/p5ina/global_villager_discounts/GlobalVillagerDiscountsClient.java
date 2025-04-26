@@ -1,4 +1,4 @@
-package com.p5vanilla.global_villager_discounts;
+package com.p5ina.global_villager_discounts;
 
 import net.fabricmc.api.ClientModInitializer;
 

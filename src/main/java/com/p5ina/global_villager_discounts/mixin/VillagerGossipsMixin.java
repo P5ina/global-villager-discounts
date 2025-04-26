@@ -1,4 +1,4 @@
-package com.p5vanilla.global_villager_discounts.mixin;
+package com.p5ina.global_villager_discounts.mixin;
 
 import com.google.common.collect.Maps;
 import net.minecraft.village.VillageGossipType;

@@ -12,7 +12,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.p5vanilla.global_villager_discounts.GlobalVillagerDiscounts"
+      "com.p5ina.global_villager_discounts.GlobalVillagerDiscounts"
     ]
   },
   "mixins": [
