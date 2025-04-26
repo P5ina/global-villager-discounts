@@ -3,8 +3,10 @@
   "id": "global_villager_discounts",
   "version": "${version}",
   "name": "Global Villager Discounts",
-  "description": "",
-  "authors": [],
+  "description": "Add villager discounts for all players.",
+  "authors": [
+    "P5ina"
+  ],
   "contact": {},
   "license": "MIT",
   "icon": "assets/global_villager_discounts/icon.png",
@@ -24,7 +26,6 @@
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": "*",
     "minecraft": "${minecraft_version}"
   }
 }
