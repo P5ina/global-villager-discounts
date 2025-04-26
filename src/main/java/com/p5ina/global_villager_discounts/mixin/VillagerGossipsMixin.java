@@ -1,7 +1,7 @@
 package com.p5ina.global_villager_discounts.mixin;
 
 import com.google.common.collect.Maps;
-import net.minecraft.village.VillageGossipType;
+import net.minecraft.village.VillagerGossipType;
 import net.minecraft.village.VillagerGossips;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,20 +21,20 @@ public abstract class VillagerGossipsMixin {
     private final Map<UUID, VillagerGossips.Reputation> entityReputation = Maps.newHashMap();
 
     @Shadow
-    protected abstract int mergeReputation(VillageGossipType type, int left, int right);
+    protected abstract int mergeReputation(VillagerGossipType type, int left, int right);
 
     @Inject(
             method = "getReputationFor(Ljava/util/UUID;Ljava/util/function/Predicate;)I",
             at = @At("HEAD"), cancellable = true
     )
     private void getReputationFor(
-            UUID target, Predicate<VillageGossipType> gossipTypeFilter,
+            UUID target, Predicate<VillagerGossipType> gossipTypeFilter,
             CallbackInfoReturnable<Integer> cir) {
         VillagerGossips.Reputation playerReputation = entityReputation.get(target);
         int playerGossip = 0;
         if (playerReputation != null) {
             playerGossip = playerReputation.getValueFor(gossipType -> {
-                if (gossipType == VillageGossipType.MAJOR_POSITIVE || gossipType == VillageGossipType.MINOR_POSITIVE) {
+                if (gossipType == VillagerGossipType.MAJOR_POSITIVE || gossipType == VillagerGossipType.MINOR_POSITIVE) {
                     return false;
                 }
                 return gossipTypeFilter.test(gossipType);
@@ -47,7 +47,7 @@ public abstract class VillagerGossipsMixin {
         int globalPositiveGossip = 0;
         for (var entry: entityReputation.entrySet()) {
             int positiveGossip = entry.getValue().getValueFor(gossipType -> {
-                if (gossipType == VillageGossipType.MAJOR_POSITIVE || gossipType == VillageGossipType.MINOR_POSITIVE) {
+                if (gossipType == VillagerGossipType.MAJOR_POSITIVE || gossipType == VillagerGossipType.MINOR_POSITIVE) {
                     return gossipTypeFilter.test(gossipType);
                 }
                 return false;
@@ -63,18 +63,18 @@ public abstract class VillagerGossipsMixin {
             method = "startGossip",
             at = @At("TAIL")
     )
-    private void startGossip(UUID target, VillageGossipType type, int value, CallbackInfo ci) {
-        if (type != VillageGossipType.MAJOR_POSITIVE && type != VillageGossipType.MINOR_POSITIVE) {
+    private void startGossip(UUID target, VillagerGossipType type, int value, CallbackInfo ci) {
+        if (type != VillagerGossipType.MAJOR_POSITIVE && type != VillagerGossipType.MINOR_POSITIVE) {
             return;
         }
 
         var maxEntry = entityReputation.entrySet().stream().max((e1, e2) -> {
            int g1 = e1.getValue().getValueFor(
-                   gossipType -> gossipType == VillageGossipType.MAJOR_POSITIVE ||
-                           gossipType == VillageGossipType.MINOR_POSITIVE);
+                   gossipType -> gossipType == VillagerGossipType.MAJOR_POSITIVE ||
+                           gossipType == VillagerGossipType.MINOR_POSITIVE);
            int g2 = e2.getValue().getValueFor(
-                   gossipType -> gossipType == VillageGossipType.MAJOR_POSITIVE ||
-                           gossipType == VillageGossipType.MINOR_POSITIVE);
+                   gossipType -> gossipType == VillagerGossipType.MAJOR_POSITIVE ||
+                           gossipType == VillagerGossipType.MINOR_POSITIVE);
            return Integer.compare(g1, g2);
         });
         maxEntry.ifPresent(e -> {

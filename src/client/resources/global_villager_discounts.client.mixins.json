@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.p5vanilla.global_villager_discounts.mixin.client",
+  "package": "com.p5ina.global_villager_discounts.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
   ],
