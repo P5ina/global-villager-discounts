@@ -21,5 +21,5 @@ to GitHub to let me know.
 None that I know of, but you can always let me know
 by sending an issue to GitHub.
 
-### Can I use this in modpacks
+### Can I use this in modpacks?
 Yes, of course. You don't need to credit me or something like that. 
